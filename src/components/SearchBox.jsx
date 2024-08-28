@@ -27,9 +27,10 @@ export default function SearchBox() {
   const {data, isLoading, error} = useQuery({
     queryKey: ['search', debouncedSearchTerm],
     queryFn: 
-    () => {
+    async () => {
     if (debouncedSearchTerm) {
-       return fetch(`https://dummyjson.com/products/search?q=${debouncedSearchTerm}`).then(res => res.json())
+        const res = await fetch(`https://dummyjson.com/products/search?q=${debouncedSearchTerm}`)
+        return await res.json()
     }
     return {products: []}
     }
