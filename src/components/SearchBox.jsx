@@ -26,6 +26,7 @@ export default function SearchBox() {
 
   const {data, isLoading, error} = useQuery({
     queryKey: ['search', debouncedSearchTerm],
+    enabled:  search.length > 3, //  remove this to enable the query to run on every change // run the query only when the search term is greater than 3 characters
     queryFn: 
     async () => {
     if (debouncedSearchTerm) {
